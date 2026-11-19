@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Byke"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+           Title="Вход" FontFamily="Arial" Background="White">
+    <StackPanel Width="340" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Text="Вход в систему" FontSize="22" FontWeight="Bold" Foreground="#4B0082"
+                   HorizontalAlignment="Center" Margin="0,0,0,15"/>
+        <TextBlock Text="Логин" Margin="4,0,0,0"/>
+        <TextBox x:Name="txtLogin"/>
+        <TextBlock Text="Пароль" Margin="4,8,0,0"/>
+        <PasswordBox x:Name="txtPassword" Padding="4" Margin="4"/>
+        <Button Content="Войти" IsDefault="True" Margin="4,16,4,4" Click="btnLogin_Click"/>
+        <Button Content="Войти как гость" Background="#6A5ACD" Click="btnGuest_Click"/>
+    </StackPanel>
 </Window>

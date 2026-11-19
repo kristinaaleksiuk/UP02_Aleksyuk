@@ -1,0 +1,83 @@
+﻿<Page x:Class="Byke.Pages.ProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Byke.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" FontFamily="Arial" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка: логотип, заголовок, ФИО пользователя, кнопки -->
+        <Border Grid.Row="0" Background="#6A5ACD" Padding="10">
+            <DockPanel LastChildFill="False">
+                <Image x:Name="imgLogo" Height="50" Stretch="Uniform" DockPanel.Dock="Left"/>
+                <TextBlock Text="Товары" FontSize="24" FontWeight="Bold" Foreground="White"
+                           VerticalAlignment="Center" Margin="15,0,0,0" DockPanel.Dock="Left"/>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
+                    <TextBlock x:Name="txtUser" Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <Button x:Name="btnOrders" Content="Заказы" Click="btnOrders_Click"/>
+                    <Button x:Name="btnAdd" Content="Добавить товар" Click="btnAdd_Click"/>
+                    <Button x:Name="btnLogout" Content="Выйти" Click="btnLogout_Click"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- Поиск, сортировка, фильтрация (менеджер и администратор) -->
+        <StackPanel x:Name="panelTools" Grid.Row="1" Orientation="Horizontal" Margin="10,8">
+            <TextBlock Text="Поиск:" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtSearch" Width="260" TextChanged="txtSearch_TextChanged"/>
+            <TextBlock Text="Сортировка:" VerticalAlignment="Center" Margin="12,0,0,0"/>
+            <ComboBox x:Name="cmbSort" Width="210" SelectionChanged="cmbSort_SelectionChanged"/>
+            <TextBlock Text="Поставщик:" VerticalAlignment="Center" Margin="12,0,0,0"/>
+            <ComboBox x:Name="cmbSupplier" Width="180" DisplayMemberPath="Name"
+                      SelectedValuePath="Id" SelectionChanged="cmbSupplier_SelectionChanged"/>
+            <TextBlock x:Name="txtCount" VerticalAlignment="Center" Margin="12,0,0,0" Foreground="#4B0082"/>
+        </StackPanel>
+
+        <!-- Список товаров -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="lstProducts">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="{Binding RowBackground}" BorderBrush="#6A5ACD" BorderThickness="1"
+                                Margin="10,5" Padding="8">
+                            <Grid TextElement.Foreground="{Binding TextBrush}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="170"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding Image}" Width="120" Height="90" Stretch="Uniform"/>
+                                <StackPanel Grid.Column="1" Margin="10,0">
+                                    <TextBlock Text="{Binding ProductName}" FontWeight="Bold" FontSize="15" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="60" Margin="0,3"/>
+                                    <TextBlock Text="{Binding CategoryName, StringFormat=Категория: {0}}"/>
+                                    <TextBlock Text="{Binding ManufacturerName, StringFormat=Производитель: {0}}"/>
+                                    <TextBlock Text="{Binding SupplierName, StringFormat=Поставщик: {0}}"/>
+                                    <TextBlock Text="{Binding StockQty, StringFormat=На складе: {0}}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding Discount, StringFormat=Скидка: {0}%}" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="{Binding Price, StringFormat={}{0:N2} ₽}" TextDecorations="Strikethrough"
+                                               Visibility="{Binding OldPriceVisibility}" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="{Binding FinalPrice, StringFormat={}{0:N2} ₽}" FontWeight="Bold" FontSize="16"
+                                               HorizontalAlignment="Right"/>
+                                    <Button Content="Редактировать" Click="btnEdit_Click"
+                                            Visibility="{Binding Source={x:Static local:Session.AdminVisibility}}"/>
+                                    <Button Content="Удалить" Click="btnDelete_Click"
+                                            Visibility="{Binding Source={x:Static local:Session.AdminVisibility}}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

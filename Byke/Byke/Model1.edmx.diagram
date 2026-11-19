@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5a849b660b254fa0860dbebcc5cfcabb" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="VeloDriveModel.Addres" Width="1.5" PointX="2.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.CategoryTovar" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.Manufacture" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.OrderItem" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.Orders" Width="1.5" PointX="4.625" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.role" Width="1.5" PointX="0.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.StatusOrder" Width="1.5" PointX="0.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.Suploer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.Tovar" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeloDriveModel.Users" Width="1.5" PointX="2.375" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="VeloDriveModel.FK_Orders_Addres" ManuallyRouted="false" />
+        <AssociationConnector Association="VeloDriveModel.FK_Tovar_CategoryTovar" ManuallyRouted="false" />
+        <AssociationConnector Association="VeloDriveModel.FK_Tovar_Manufacture" ManuallyRouted="false" />
+        <AssociationConnector Association="VeloDriveModel.FK_OrderItem_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="VeloDriveModel.FK_OrderItem_Tovar" ManuallyRouted="false" />
+        <AssociationConnector Association="VeloDriveModel.FK_Orders_StatusOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="VeloDriveModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="VeloDriveModel.FK_Users_role" ManuallyRouted="false" />
+        <AssociationConnector Association="VeloDriveModel.FK_Tovar_Suploer" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
